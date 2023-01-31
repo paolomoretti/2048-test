@@ -1,0 +1,52 @@
+.BoardOptions {
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.BoardOptions h1 {
+    text-align: center;
+}
+
+.BoardOptions .options-container {
+    background-color: #ccc;
+    padding: 1rem 2rem;
+}
+.BoardOptions .options-container .row {
+    display: flex;
+    align-items: center;
+    justify-items: start;
+    justify-content: flex-start;
+}
+.BoardOptions .options-container h4 {
+    width: 110px;
+    margin: 0;
+    white-space: nowrap;
+}
+.BoardOptions .options-container input {
+    height: 2rem;
+    border-radius: 3px;
+    background-color: #eee;
+    border: 1px solid #999;
+    padding: 3px 10px;
+    font-size: 1.3rem;
+    margin: 0 .3em;
+}
+.BoardOptions .options-container .radio-group {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+.BoardOptions .options-container input[type=radio] {
+    width: 1.2rem;
+}
+.BoardOptions .options-container input[type=number] {
+    width: 4rem;
+}
+.BoardOptions .options-container button {
+    height: 2rem;
+    border-radius: 3px;
+    background-color: #eee;
+    padding: 3px 10px;
+    white-space: nowrap;
+    font-size: 1rem;
+}
