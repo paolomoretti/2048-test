@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# V7 2048 game test
+by Paolo Moretti
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Run the test
+You can find the test deployed and running [here](https://paolomoretti.github.io/2048-test/ "Test on Github").
 
-## Available Scripts
+To see the local dev version, please run `npm run start`.
 
-In the project directory, you can run:
+To run tests: `npm run test`.
 
-### `npm start`
+## Technical solution
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As the game is quite simple in logic and presentation, I opted for a quick `create-react-app` solution with `typescript` support.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The front-end is rendered using `React`, which includes everything that I need without additional libraries: 
+* light components
+* ability to share a context
+* a simple reducer that would help organise the state changes
 
-### `npm test`
+Given the UI I opted for css modules to style the components, as the app grows I would probably switch to other solutions as I don't find it scalable enough.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## The game
 
-### `npm run build`
+Having played 2048 quite a bit in the past, I was excited about this challenge.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+My excitement pushed me into going slightly off a couple of the original specs:
+* Specification #4: new tiles should have a value of 1. I set it to 2s with sporadic 4s as per the original game (which just made my life a little harder :))
+* Specification #6: the game is won when value is 2048. I still let the user play even though I notify of the winning
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I hope it's not a problem.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Bonus tasks
 
-### `npm run eject`
+I took 2 bonus tasks on: the random obstacles and the custom grid size.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+They are both easy to implement, and they don't require any additional library or more advanced deployment solutions to run, so I opted for focusing on just these two.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Improvements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+There are some improvements that I had in mind and I wanted to list them here, but I traded them out of the exercise for time balance.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Tests
 
-## Learn More
+I normally start code/back-end logic by writing tests first, to cover my specs. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Given the nature of the exercise (a game), I felt it more natural to start from the UI components, which I normally code first, test in a browser, and then I add automated tests using enzyme or react test library to validate the behaviour and specs.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As I progressively incremented the app, I was relying more and more on manual browser tests, and I neglected the TDD approach that I would normally use in a business context.
+
+I decided to add examples of how I would normally test logics and components:
+* src/utils/boardMatrix.spec.ts
+* src/components/Tile.test.tsx
+
+(as described above, you can run `npm run test` to see them both running)
+
+
+### Responsiveness
+I've added basic responsiveness to make sure the game would be ok for all meaningful desktop screens, but it could be improved further to adapt the font-sizes to the screen and a number of other tweaks.
+
+### Mobile
+A touch library to subscribe to up/right/down/left swipes would have enabled the game to any mobile/touch device.
+ 

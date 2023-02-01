@@ -1,0 +1,25 @@
+.option-title {
+    width: 110px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.option-input {
+    height: 2rem;
+    border-radius: 3px;
+    background-color: #eee;
+    border: 1px solid #999;
+    padding: 3px 10px;
+    font-size: 1.3rem;
+    margin: 0 .3em;
+    width: 4rem;
+}
+
+.option-button {
+    height: 2rem;
+    border-radius: 3px;
+    background-color: #eee;
+    padding: 3px 10px;
+    white-space: nowrap;
+    font-size: 1rem;
+}

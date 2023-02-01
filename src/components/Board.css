@@ -1,30 +1,26 @@
-.Board {
+.board {
     position: relative;
+    display: flex;
+    justify-content: center;
 }
-.Board-grid {
+
+.board-grid-container {
+    padding: 2vmin;
+    background: var(--board-background-color);
+    border-radius: 20px;
+    margin-top: 2vmin;
+    width: 100%;
+    min-width: 300px;
+}
+
+.board-grid {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
 }
-.Board-grid-tile-placeholder {
-    width: var(--tile-size);
-    height: var(--tile-size);
-    border: var(--tile-border);
-    border-radius: var(--tile-border-radius);
-    overflow: hidden;
-    background-color: #aaa;
-}
-.Board .game-over-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-shadow: 0 0 1px;
-    z-index: 10000;
-    font-size: 4rem;
-}
-.Board.game-over .Board-grid {
+
+.board.game-over .board-grid-container {
     opacity: .7;
     transform: scale(.9);
     filter: saturate(0);

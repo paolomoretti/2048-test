@@ -1,19 +1,17 @@
-.Tile {
-    transition: top .2s, left .2s, transform .2s;
+.tile {
+    transition: top .2s, left .2s, transform .2s ease-in;
     position: absolute;
-    width: var(--tile-size);
-    height: var(--tile-size);
-    border: var(--tile-size);
 }
-.Tile.highlight {
-    transform: scale(1.1);
-    opacity: 1 !important;
+
+.tile.highlight .tile-content {
+    transform: scale(1);
 }
-.Tile-content {
+
+.tile-content {
     transform: scale(.95);
-    width: var(--tile-size);
-    height: var(--tile-size);
     display: flex;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     border-radius: var(--tile-border-radius);
@@ -21,61 +19,65 @@
     position: relative;
     color: #f3f3f3;
 }
-.Tile-content h1 {
+
+.tile-content h2 {
     margin: 0;
-    font-size: 3rem;
+    font-size: 3em;
     -webkit-font-smoothing: antialiased;
 }
-.Tile-content code {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 4px;
-}
-.Tile-content code.pos {
-    left: 0;
-    right: initial;
-}
+
 .tile-block {
-    background-color: #282c34;
+    background: transparent url("/public/rock.png") no-repeat center center;
+    background-size: cover;
     transform: scale(.93);
-    filter: blur(2px);
-}
-.tile-2 .Tile-content {
-    background: #eee4da;
-    color: #666;
-}
-.tile-4 .Tile-content {
-    background: #ede0c8;
-    color: #666;
-}
-.tile-8 .Tile-content {
-    background: #f2b179
-}
-.tile-16 .Tile-content {
-    background: #f59563
-}
-.tile-32 .Tile-content, .tile-64 .Tile-content {
-    color: #f9f6f2;
-    background: #f65e3b
+    border: 0.3em solid #814b36;
+    border-radius: 0.5em;
 }
 
-.tile-128 .Tile-content {
-    background: #edcf72;
+.tile-2 .tile-content {
+    background: var(--color-2);
+    color: var(--color-text);
 }
 
-.tile-256 .Tile-content {
-    background: #edcc61;
+.tile-4 .tile-content {
+    background: var(--color-4);
+    color: var(--color-text);
 }
 
-.tile-512 .Tile-content {
-    background: #edc850;
+.tile-8 .tile-content {
+    background: var(--color-8);
 }
 
-.tile-1024 .Tile-content {
-    background: #edc53f;
+.tile-16 .tile-content {
+    background: var(--color-16);
 }
 
-.tile-2048 .Tile-content {
-    background: #edc22e;
+.tile-32 .tile-content {
+    background: var(--color-32);
+}
+
+.tile-64 .tile-content {
+    background: var(--color-32);
+}
+
+.tile-128 .tile-content {
+    background: var(--color-128);
+}
+
+.tile-256 .tile-content {
+    background: var(--color-256);
+}
+
+.tile-512 .tile-content {
+    background: var(--color-512);
+}
+
+.tile-1024 .tile-content {
+    background: var(--color-1024);
+    font-size: 75%;
+}
+
+.tile-2048 .tile-content {
+    background: var(--color-2048);
+    font-size: 75%;
 }

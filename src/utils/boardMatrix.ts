@@ -42,7 +42,6 @@ export const createTile = (pos: number, boardSize: number, block: boolean): Boar
     col,
     row,
     value: !block ? generateInitialValue() : undefined,
-    pos: getAxesPos(row, col, boardSize),
     block
   };
 }
@@ -111,7 +110,6 @@ export const moveTiles = (currentTiles: Array<BoardTile>, boardSize: number, dir
       } else {
         // The tile should merge with the tile ahead, removing the old tile when done (using the stale flag)
         tiles[i][moveDef.axis] = fwdTile[moveDef.axis];
-        tiles[i].pos = getAxesPos(tiles[i].row, tiles[i].col, boardSize);
         tiles[i].value! *= 2;
         tiles[i].merged = true;
         tiles[findIndex(tiles, t => t.id === fwdTile.id)].stale = true;

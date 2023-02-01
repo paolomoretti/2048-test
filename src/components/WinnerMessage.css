@@ -1,0 +1,7 @@
+.winner-message {
+    margin-top: 1em;
+    background-color: var(--color-2048);
+    text-align: center;
+    padding: .5em 2em;
+    color: white;
+}

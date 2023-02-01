@@ -1,0 +1,6 @@
+.board-grid-tile-placeholder {
+    border: var(--tile-border);
+    border-radius: var(--tile-border-radius);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .2);
+}

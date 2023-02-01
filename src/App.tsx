@@ -1,4 +1,4 @@
-import React, {createContext, useMemo, useReducer} from 'react';
+import React, {useMemo, useReducer} from 'react';
 import './App.css';
 import {Board} from "./components/Board";
 import {BoardOptions} from "./components/BoardOptions";
@@ -8,14 +8,14 @@ import {GameContext} from "./context/game.context";
 function App() {
   const [state, dispatch] = useReducer(gameReducer, DEFAULT_STATE);
   const contextValue = useMemo(() => {
-    return { state, dispatch };
+    return {state, dispatch};
   }, [state, dispatch]);
 
   return (
     <div className="App">
       <GameContext.Provider value={contextValue}>
-        <BoardOptions />
-        <Board />
+        <BoardOptions/>
+        <Board/>
       </GameContext.Provider>
     </div>
   );

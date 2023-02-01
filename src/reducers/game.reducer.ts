@@ -1,5 +1,6 @@
 import {BoardTile, Keys} from "../types";
 import {addRandomTile, cleanTiles, getTilesSnapshot, hasMoves, moveTiles} from "../utils/boardMatrix";
+import {find} from "lodash";
 
 export type GameState = {
   size: number;
@@ -7,7 +8,9 @@ export type GameState = {
   transitionMs: number;
   withBlocks: boolean;
   hasMoved: boolean;
+  lastMoveEnded: boolean;
   gameOver: boolean;
+  winner: boolean;
 }
 export type GameAction =
   | { type: "SET_BOARD_SIZE"; size: number; }
@@ -19,10 +22,12 @@ export type GameAction =
 export const DEFAULT_STATE = {
   tiles: [],
   withBlocks: false,
-  size: 4,
+  size: 6,
   transitionMs: 150,
   hasMoved: false,
-  gameOver: false
+  lastMoveEnded: false,
+  gameOver: false,
+  winner: false
 };
 
 export function gameReducer(state: GameState, action: GameAction) {
@@ -40,24 +45,16 @@ export function gameReducer(state: GameState, action: GameAction) {
         size: action.size
       };
 
-    case "MOVE_END":
-      return {
-        ...state,
-        hasMoved: false,
-        tiles: cleanTiles(state.tiles)
-      }
-
     case "ADD_TILE":
       const tiles = addRandomTile(state.tiles, state.size, action.block);
       return {
         ...state,
         hasMoved: false,
         tiles: tiles,
-        gameOver: !hasMoves(tiles, state.size)
+        gameOver: !hasMoves(tiles, state.size) && !state.winner
       }
 
     case "MOVE":
-      console.log(`TILES`, state.tiles);
       const preSnapshot = getTilesSnapshot(state.tiles);
       const movedTiles = moveTiles(state.tiles, state.size, action.direction);
       const hasChanged = preSnapshot !== getTilesSnapshot(state.tiles);
@@ -65,8 +62,16 @@ export function gameReducer(state: GameState, action: GameAction) {
       return {
         ...state,
         hasMoved: hasChanged,
-        tiles: !hasChanged ? state.tiles : movedTiles
+        tiles: movedTiles
       };
+
+    case "MOVE_END":
+      return {
+        ...state,
+        hasMoved: false,
+        tiles: cleanTiles(state.tiles),
+        winner: !!find(state.tiles, t => t.value! >= 2048)
+      }
 
     default:
       return state;

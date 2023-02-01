@@ -1,17 +1,32 @@
 :root {
-  --tile-color: #84b7a2;
-  --tile-size: 100px;
-  --tile-border: 4px solid #fff;
-  --tile-border-radius: 10px;
+    --board-background-color: #cba37e;
+    --tile-color: #84b7a2;
+    --tile-size: 100px;
+    --tile-border: 4px solid var(--board-background-color);
+    --tile-border-radius: 10px;
+    --color-text: #666;
+    --color-2048: #edc22e;
+    --color-1024: #edc53f;
+    --color-512: #edc850;
+    --color-256: #edcc61;
+    --color-128: #edcf72;
+    --color-64: #f65e3b;
+    --color-32: var(--color-64);
+    --color-16: #f59563;
+    --color-8: #f2b179;
+    --color-4: #ede0c8;
+    --color-2: #eee4da;
 }
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

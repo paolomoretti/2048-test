@@ -1,47 +1,46 @@
 import './Tile.css';
-import {useEffect, useRef, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {BoardTile} from "../types";
+import {GameContext} from '../context/game.context';
 
 interface TileProps {
   tile: BoardTile;
 }
 
 export const Tile = ({tile}: TileProps) => {
-  const elRef = useRef<HTMLDivElement>(null);
+  const {state} = useContext(GameContext);
   const [style, setStyle] = useState<any>({});
-  const {row, col, value} = tile;
+  const [cssClass, setCssClass] = useState<string>(`tile ${tile.block ? 'tile-block' : ''}`);
+
+  const updateCssClasses = (tile: BoardTile, highlight: boolean = false): string => {
+    const list = ['tile', `tile-${tile.block ? 'block' : Math.min(tile.value!, 2048)}`];
+    if (highlight) {
+      list.push('highlight');
+    }
+    return list.join(' ');
+  }
 
   useEffect(() => {
-    if (elRef.current) {
-      setTimeout(() =>
-        elRef.current!.classList.remove('popup-animation')
-      , 500);
-    }
-  }, [])
-  useEffect(() => {
+    const {row, col, stale} = tile;
+    const {size} = state;
     setStyle({
-      ...style,
-      // opacity: 1,
-      left: (col * 100) + 'px',
-      top: row * 100 + 'px',
-      zIndex: tile.stale ? 1 : (row + 1) * (col + 1)
+      left: (100 / size) * col + '%',
+      top: (100 / size) * row + '%',
+      width: (100 / size) + '%',
+      height: (100 / size) + '%',
+      zIndex: stale ? 1 : (row + 1) * (col + 1)
     });
   }, [tile.row, tile.col]);
 
   useEffect(() => {
-    elRef.current!.classList.add('highlight');
-    elRef.current!.classList.add(`tile-${tile.value}`);
-    setTimeout(() => {
-      elRef.current!.classList.remove('highlight');
-    }, 50)
-  }, [tile.value]);
+    setCssClass(updateCssClasses(tile, true));
+    setTimeout(() => setCssClass(updateCssClasses(tile)), state.transitionMs);
+  }, [tile.value, state.transitionMs]);
 
   return (
-    <div ref={elRef} className={`Tile tile-${tile.block ? 'block' : tile.value}`} style={style}>
-      <div className={'Tile-content'}>
-        <h1>{value}</h1>
-        {/*<code>{tile.id}</code>*/}
-        {/*<code className={'pos'}>{tile.pos}</code>*/}
+    <div role={'tile'} className={cssClass} style={style}>
+      <div className={'tile-content'}>
+        <h2>{tile.value}</h2>
       </div>
     </div>
   )
