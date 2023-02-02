@@ -29,6 +29,7 @@ export const Board = () => {
 
   useEffect(() => {
     if (state.gameOver) {
+      // When the game is over, I unsubscribe from the key events, although no moves are possible
       document.removeEventListener('keyup', throttledKeyHandler);
     } else {
       document.addEventListener('keyup', throttledKeyHandler);
@@ -37,6 +38,7 @@ export const Board = () => {
 
   useEffect(() => {
     if (state.hasMoved) {
+      // If tiles moved, then we need to add a new tile to the board
       setTimeout(() =>
           dispatch({type: "ADD_TILE"}), state.transitionMs
         , state.transitionMs);
@@ -45,6 +47,7 @@ export const Board = () => {
 
   useEffect(() => {
     if (shouldInit.current) {
+      // Start of the game, let's add the first tile
       shouldInit.current = false;
       dispatch({type: "ADD_TILE"});
     }

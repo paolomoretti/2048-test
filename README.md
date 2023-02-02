@@ -39,8 +39,10 @@ They are both easy to implement, and they don't require any additional library o
 
 There are some improvements that I had in mind and I wanted to list them here, but I traded them out of the exercise for time balance.
 
-### Tests
+### Separation of logic
+Ideally, the game logic should be more decoupled from the presentation and probably pulled out in a separate provider for simplicity and re-usability. 
 
+### Tests
 I normally start code/back-end logic by writing tests first, to cover my specs. 
 
 Given the nature of the exercise (a game), I felt it more natural to start from the UI components, which I normally code first, test in a browser, and then I add automated tests using enzyme or react test library to validate the behaviour and specs.

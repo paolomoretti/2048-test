@@ -20,6 +20,7 @@ export const Tile = ({tile}: TileProps) => {
     return list.join(' ');
   }
 
+  // Recalculate position when row/col changes
   useEffect(() => {
     const {row, col, stale} = tile;
     const {size} = state;
