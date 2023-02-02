@@ -1,4 +1,4 @@
-# V7 2048 game test
+# 2048 game test
 by Paolo Moretti
 
 ## Run the test
